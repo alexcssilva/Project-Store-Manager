@@ -2,6 +2,7 @@ const connection = require('./connection');
 
 const listAllProducts = async () => {
   const [result] = await connection.query('SELECT * FROM products;');
+  console.log('; result', result);
 
   return result;
 };
