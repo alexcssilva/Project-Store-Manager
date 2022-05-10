@@ -13,14 +13,21 @@ const listIdProducts = async (id) => {
   return result;
 };
 
+const compareName = async (name) => {
+  const [result] = await connection.query(`
+    SELECT id,name,quantity FROM products WHERE name = ?;`, [name]);
+
+  return result;
+};
+
 const createProduct = async (name, quantity) => {
-  const [result] = await connection.execute(`
+  const [{ insertId }] = await connection.execute(`
     INSERT INTO products (name, quantity)
     VALUES (?, ?)
   `, [name, quantity]);
 
   return {
-    id: result.id,
+    id: insertId,
     name,
     quantity,
   };
@@ -29,5 +36,6 @@ const createProduct = async (name, quantity) => {
 module.exports = {
   listAllProducts,
   listIdProducts,
+  compareName,
   createProduct,
 };
