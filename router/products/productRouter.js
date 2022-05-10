@@ -9,4 +9,6 @@ productRouter.get('/:id', productController.listIdProducts);
 
 productRouter.post('/', compareName, productController.createNewProduct);
 
+productRouter.put('/:id', productController.listIdProducts, productController.updateProduct);
+
 module.exports = productRouter;
