@@ -33,23 +33,9 @@ const createProduct = async (name, quantity) => {
   };
 };
 
-const updateProduct = async (id, name, quantity) => {
-  const query = 'UPDATE products SET name = ?, quantity = ? WHERE id = ?;';
-
-  await connection.execute(query, [name, quantity, id]); 
-  console.log('; name', name);
-
-  return {
-    id,
-    name,
-    quantity,
-  };
-};
-
 module.exports = {
   listAllProducts,
   listIdProducts,
   compareName,
   createProduct,
-  updateProduct,
 };
