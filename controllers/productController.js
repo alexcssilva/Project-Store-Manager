@@ -6,11 +6,13 @@ const listProducts = async (_req, res, _next) => {
     return res.status(200).json(products);
 };
 
-const listIdProducts = async (req, res, _next) => {
+const listIdProducts = async (req, res, next) => {
   const { id } = req.params;
+  
     const [productId] = await productService.getIdProduct(id);
     if (!productId) return res.status(404).json({ message: 'Product not found' });
-    return res.status(200).json(productId);
+
+  next();
 };
 
 const createNewProduct = async (req, res, _next) => {
@@ -23,8 +25,17 @@ const createNewProduct = async (req, res, _next) => {
     return res.status(201).json(newProduct);
 };
 
+const updateProduct = async (req, res, _next) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+
+    const editProduct = await productService.updateProduct(id, name, quantity);
+    return res.status(200).json(editProduct);
+};
+
 module.exports = {
   listProducts,
   listIdProducts,
   createNewProduct,
+  updateProduct,
 };
