@@ -12,7 +12,21 @@ const getIdProduct = async (id) => {
   return productsId;
 };
 
+const compareName = async (name) => {
+  const nameProduct = await productModel.compareName(name);
+
+  return nameProduct;
+};
+
+const createProduct = async (name, quantity) => {
+  const newProduct = await productModel.createProduct(name, quantity);
+
+  return newProduct;
+};
+
 module.exports = {
   getProduct,
   getIdProduct,
+  compareName,
+  createProduct,
 };
