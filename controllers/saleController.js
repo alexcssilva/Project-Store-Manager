@@ -13,7 +13,16 @@ const listIdSales = async (req, res, _next) => {
     return res.status(200).json(saleId);
 };
 
+const createNewSale = async (req, res, _next) => {
+  const saleProducts = req.body; 
+  
+  const newSale = await saleService.createNewSale(saleProducts);
+  
+  return res.status(201).json(newSale);
+};
+
 module.exports = {
   listSales,
   listIdSales,
+  createNewSale,
 };
