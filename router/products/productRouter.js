@@ -11,4 +11,6 @@ productRouter.post('/', compareName, productController.createNewProduct);
 
 productRouter.put('/:id', productController.idProducts, productController.updateProduct);
 
+productRouter.delete('/:id', productController.idProducts, productController.deleteProduct);
+
 module.exports = productRouter;
