@@ -12,7 +12,6 @@ const compareName = async (req, res, next) => {
 
 const validateName = async (req, res, next) => {
   const { name } = req.body;
-  console.log('; name', name);
 
   if (!name) {
     return res.status(400).json({ message: '"name" is required' });
@@ -20,7 +19,17 @@ const validateName = async (req, res, next) => {
   next();
 };
 
+const lengthName = async (req, res, next) => {
+  const { name } = req.body;
+
+  if (name.length < 5) {
+    return res.status(422).json({ message: '"name" length must be at least 5 characters long' });
+  }
+  next();
+};
+
 module.exports = {
   compareName,
   validateName,
+  lengthName,
 };
