@@ -10,6 +10,17 @@ const compareName = async (req, res, next) => {
   next();
 };
 
+const validateName = async (req, res, next) => {
+  const { name } = req.body;
+  console.log('; name', name);
+
+  if (!name) {
+    return res.status(400).json({ message: '"name" is required' });
+  }
+  next();
+};
+
 module.exports = {
   compareName,
+  validateName,
 };
