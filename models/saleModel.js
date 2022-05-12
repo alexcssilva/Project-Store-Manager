@@ -29,7 +29,6 @@ WHERE sale_id=?`, [id]);
 };
 
 const createNewSale = async (saleProducts) => {
-console.log('; saleProducts', saleProducts);
   const [{ insertId }] = await connection.query('INSERT INTO sales (date) VALUES (NOW());');
   
   saleProducts.forEach(async ({ productId, quantity }) => { 
@@ -45,22 +44,22 @@ console.log('; saleProducts', saleProducts);
   };
 };
 
+const updateSale = async (id, saleProducts) => {
+  saleProducts.forEach(async ({ productId, quantity }) => {
+    await connection.execute(`
+    UPDATE sales_products 
+      SET product_id = ?, quantity = ? 
+    WHERE sale_id = ?;`, [productId, quantity, id]);
+  });
+    return {
+      saleId: id,
+      itemUpdated: saleProducts,
+    };
+};
+
 module.exports = {
   listAllSales,
   listIdSales,
   createNewSale,
+  updateSale,
 };
-
-// {
-//   "id": 1,
-//   "itemsSold": [
-//     {
-//       "productId": 1,
-//       "quantity": 2
-//     },
-//     {
-//       "productId": 2,
-//       "quantity": 5
-//     }
-//   ]
-// }
