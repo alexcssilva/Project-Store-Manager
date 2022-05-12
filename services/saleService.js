@@ -13,13 +13,20 @@ const getIdSale = async (id) => {
 };
 
 const createNewSale = async (saleProducts) => {
-  const newSale = saleModel.createNewSale(saleProducts);
+  const newSale = await saleModel.createNewSale(saleProducts);
 
   return newSale;
+};
+
+const updateSale = async (id, saleProducts) => {
+  const editSale = await saleModel.updateSale(id, saleProducts);
+
+  return editSale;
 };
 
 module.exports = {
   getSale,
   getIdSale,
   createNewSale,
+  updateSale,
 };
