@@ -4,7 +4,7 @@ const connection = require('../../../models/connection');
 const productModel = require('../../../models/productModel');
 
 describe('Busca produtos no BD', () => {
-  describe('quando existe um produto com o ID informado', () => {
+  describe('quando existe um venda com o ID informado para atualizar', () => {
   
     const resultExecute = [
       {
@@ -23,7 +23,7 @@ describe('Busca produtos no BD', () => {
       connection.execute.restore()
     });
   
-      it('possui a propriedade "id"', async () => {
+      it('possui a propriedade "id" para atualzar', async () => {
         const result = await productModel.updateProduct();
         
         expect(result).to.includes.all.keys('name', 'quantity', 'id')
