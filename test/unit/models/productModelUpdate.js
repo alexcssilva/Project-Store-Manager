@@ -25,7 +25,6 @@ describe('Busca produtos no BD', () => {
   
       it('possui a propriedade "id"', async () => {
         const result = await productModel.updateProduct();
-        console.log('; result', result);
         
         expect(result).to.includes.all.keys('name', 'quantity', 'id')
       })
