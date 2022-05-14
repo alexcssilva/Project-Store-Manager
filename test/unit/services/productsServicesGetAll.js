@@ -24,7 +24,7 @@ after(() => {
     });
 
     it('o array está vazio',async () => {
-      const result = await productService.getIdProduct()
+      const result = await productService.getProduct()
 
       expect(result).to.be.empty;
     });
