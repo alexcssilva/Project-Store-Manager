@@ -12,14 +12,14 @@ describe('Chamada do controller saleProducts', () => {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
 
-      sinon.stub(saleService, 'getIdSale').resolves([{
+      sinon.stub(saleService, 'getSale').resolves([{
         "productId": 1,
         "quantity": 50
       }])
     });
 
     after(() => {
-      saleService.getIdSale.restore();
+      saleService.getSale.restore();
     });
 
     it('é chamado o metodo "status" passando o código 200', async () => {
